@@ -756,4 +756,12 @@ img:hover {
 }
 .arrow:hover {
   transform: translateX(5px);
-}/*# sourceMappingURL=style.css.map */
+}
+.arabicVersion .text-start {
+  text-align: right !important;
+}
+.arabicVersion .section-top-service .row:nth-child(even)::after {
+  left: 0px;
+  right: 90% !important;
+}
+/*# sourceMappingURL=style.css.map */
