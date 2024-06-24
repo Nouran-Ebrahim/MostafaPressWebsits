@@ -13,7 +13,6 @@ class UpdateServicesRequest extends BaseRequest
             'title_en' => ['required', 'string'],
             'desc_ar' => ['required', 'string'],
             'desc_en' => ['required', 'string'],
-            'arrangment' => ['required', 'string'],
             "desc_home_ar"=>['required', 'string'],
             "desc_home_en"=>['required', 'string'],
             'status' => ['required', 'boolean'],

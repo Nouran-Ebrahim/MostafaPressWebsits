@@ -1,4 +1,11 @@
 @extends('Admin.layout')
+@push('css')
+    <style>
+        .image-column {
+            background-color: gray;
+        }
+    </style>
+@endpush
 @section('pagetitle', __('trans.partners'))
 @section('content')
     <div class="row">
@@ -88,7 +95,8 @@
                     },
                     {
                         data: 'image',
-                        name: 'image'
+                        name: 'image',
+                        className: 'image-column'
                     },
                     {
                         data: 'status',
@@ -100,6 +108,10 @@
                         orderable: false
                     }
                 ]
+                // ,
+                // createdRow: function(row, data, dataIndex) {
+                //     $('td:eq(2)', row).addClass('image-column');
+                // }
             });
 
         });

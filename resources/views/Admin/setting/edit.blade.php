@@ -58,7 +58,7 @@
                         </select>
                     </div>
                 </div>
-            @elseif (str_contains($Setting['key'], '_services') || (str_contains($Setting['key'], 'ar') || str_contains($Setting['key'], 'en') || $Setting['type'] == 'meta') && !str_contains($Setting['key'], 'title_'))
+            @elseif (str_contains($Setting['key'], '_services') || (str_contains($Setting['key'], 'ar') || str_contains($Setting['key'], 'en') || $Setting['type'] == 'meta') && !str_contains($Setting['key'], 'title_')&& !str_contains($Setting['key'], 'desc_'))
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="{{ $Setting['key'] }}">@lang('trans.'.$Setting['key'])</label>

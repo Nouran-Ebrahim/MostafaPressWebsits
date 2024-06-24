@@ -1,16 +1,23 @@
 <?php
 
 namespace App\Models;
+use App\Functions\Upload;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Functions\Upload;
 
-class Service extends BaseModel
+class AdvertisingSlider extends BaseModel
 {
+
+
     protected $guarded = [];
 
-    public static function boot()
+    public function advertising()
+    {
+        return $this->belongsTo(Advertising::class);
+    }
+
+    protected static function boot()
     {
         parent::boot();
         static::deleting(function ($Model) {
@@ -18,9 +25,5 @@ class Service extends BaseModel
                 Upload::deleteImage($Model->image);
             }
         });
-    }
-    public function images()
-    {
-        return $this->hasMany(ServiceImage::class);
     }
 }

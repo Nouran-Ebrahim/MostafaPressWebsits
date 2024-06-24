@@ -39,7 +39,7 @@ class StatisticsController extends Controller
                     return '<input class="toggle" type="checkbox" onclick="toggleswitch('.$Model->id.',\'statistics\')" '.($Model->status ? 'checked' : '').'>';
                 })
                 ->addColumn('image', function ($Model) {
-                    return '<a class="image-popup-no-margins" href="' . image_path($Model['image']) . '">
+                    return '<a class="image-popup-no-margins image-column" href="' . image_path($Model['image']) . '">
                         <img src="' . image_path($Model['image']) . '" style="max-height: 150px;max-width: 150px">
                     </a>';
                 })
@@ -110,7 +110,7 @@ class StatisticsController extends Controller
         $Statistics->update([
             'title_ar' => $request->title_ar,
             'title_en' => $request->title_en,
-
+             'number'=> $request->number,
             'status' => $request->status ? 1 : 0,
         ]);
         if ($request->image) {
@@ -126,6 +126,6 @@ class StatisticsController extends Controller
 
     public function destroy($id)
     {
-        Slider::latest()->where('id', $id)->delete();
+        Statistics::latest()->where('id', $id)->delete();
     }
 }

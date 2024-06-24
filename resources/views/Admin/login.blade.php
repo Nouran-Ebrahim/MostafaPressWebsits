@@ -6,16 +6,16 @@
     <title>{{ setting('title_'.lang()) }}</title>
     <link rel="canonical" href="{{ url()->full() }}">
     <link rel="sitemap" href="/sitemap.xml" title="Sitemap" type="application/xml">
-    <link href="{{ asset(setting('logo')) }}" rel="shortcut icon">
+    <link href="{{ asset(setting('logo_dark')) }}" rel="shortcut icon">
     <meta name="robots" content="max-snippet:-1,max-image-preview:large,max-video-preview:-1">
     <meta name="description" content="{{ strip_tags(setting('desc')) }}">
     <meta name="keywords" content="{{ strip_tags(setting('keywords')) }}">
     <meta name="author" content="{{ setting('title_'.lang()) }}">
-    <meta name="image" content="{{ asset(setting('logo')) }}">
+    <meta name="image" content="{{ asset(setting('logo_dark')) }}">
     <meta property="og:title" content="{{ setting('title_'.lang()) }}">
     <meta property="og:description" content="{{ strip_tags(setting('desc')) }}">
     <meta property="og:locale" content="en">
-    <meta property="og:image" content="{{ asset(setting('logo')) }}">
+    <meta property="og:image" content="{{ asset(setting('logo_dark')) }}">
     <meta property="og:url" content="{{ url()->full() }}">
     <meta property="og:site_name" content="{{ setting('title_'.lang()) }}">
     <meta property="og:type" content="website">
@@ -52,7 +52,7 @@
         <div class=" card-box">
             <div class="panel-heading">
                 <div class="text-center">
-                    <img src="{{ asset(setting('logo')) }}" alt="logo" style="max-height: 100px">
+                    <img src="{{ asset(setting('logo_dark')) }}" alt="logo" style="max-height: 100px">
                 </div>
                 <h3 class="text-center"> @lang('trans.Login') <strong class="text-inverse">@lang('trans.management')</strong> </h3>
             </div>

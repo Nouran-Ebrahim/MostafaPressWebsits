@@ -145,6 +145,7 @@
 <div id="backTop" style="top: 85%;left: 50%;transform: translate(-50%, 100%);position: fixed;z-index: 99;display: none;">
     <span class="btn bg-white border border-1 border-dark rounded-3 gap-2 my-2 px-5 py-2 text-dark explore">@lang('trans.backToTop')</span>
 </div> --}}
+
 <div class id="navBar">
     <div class=" navContainer">
         <nav class="bg-primary-color  shadow-sm py-2">
@@ -199,19 +200,19 @@
                                     <ul class="navbar-nav w-100  mb-2 mb-lg-0 align-items-lg-center">
 
                                         <li class="nav-item px-2 py-2">
-                                            <a class="nav-link active " aria-current="page" href="{{route('client.home')}}">
+                                            <a class="nav-link {{ Route::currentRouteName() == 'client.home' ? 'active' : '' }} " aria-current="page" href="{{route('client.home')}}">
                                                 <span class="px-4 py-2">
                                                     @lang('trans.home')
                                                 </span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link px-2 py-2" aria-current="page" href="{{route('client.about')}}">
-                                                <span class="px-4 py-2">@lang('trans.about')</span>
+                                            <a class="nav-link px-2 py-2 {{ Route::currentRouteName() == 'client.about' ? 'active' : '' }}" aria-current="page" href="{{route('client.about')}}">
+                                                <span class="px-4 py-2"> @lang('trans.About Us')</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link px-2 py-2" aria-current="page" href="{{route('client.services')}}"><span
+                                            <a class="nav-link px-2 py-2 {{ Route::currentRouteName() == 'client.services' ||  Route::currentRouteName() == 'client.serviceGallery' ? 'active' : '' }}" aria-current="page" href="{{route('client.services')}}"><span
                                                     class="px-4 py-2">@lang('trans.services')</span></a>
                                         </li>
 
@@ -223,7 +224,7 @@
                     </div>
                     <div class="col-lg-4 col-10 d-flex align-items-center justify-content-end gap-2">
                         {{-- @dump(lang()) --}}
-                        <div class="px-2 LanguageMenu " role="button">
+                        <div class=" px-md-2 px-1 LanguageMenu d-flex gap-2 flex-nowrap" role="button">
                            
                                 <span>
                                     <img src="{{ asset('frontEnd/assets/imgs/home/globe-outline.svg') }}" loading="lazy"
@@ -236,8 +237,8 @@
                                 
                             </a>
                         </div>
-                        <div class=" px-2">
-                            <a class="bg-red text-decoration-none text-white  rounded-1 py-2 explore d-flex justify-content-center align-items-center m-auto w-auto px-3"
+                        <div class=" px-md-2 px-1">
+                            <a class="bg-red text-decoration-none text-white   rounded-1 py-2 explore d-flex justify-content-center align-items-center m-auto w-auto px-md-3 px-2"
                                 href="tel:{{setting('phone')}}">@lang('trans.Call us at') +{{setting('phone')}}</a>
                         </div>
                     </div>
@@ -248,10 +249,25 @@
 
     </div>
 
-    <div class="floatwhatsapp ">
-        <i class="fa-brands fa-whatsapp "></i>
 
+    <div class="connection">
+        @php
+        $insta=\App\Models\SocialMediaIcons::where('icon', 'like', '%instagram%')->latest()->first();
+        
+        @endphp
+         <div class="insta">
+         <a class="text-white" target="_blanck" href="{{$insta->link}}"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <div class="phone">
+            <a class="text-white" target="_blanck" href="tel:{{setting('phone')}}"><i class="fa-solid fa-phone "></i></a>
+        </div>
+        <div class="floatwhatsapp">
+          <a class="text-white" target="_blanck" href="https://wa.me/{{setting('whatsapp')}}"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+       
+       
     </div>
+    
     <div class="back-to-top" id="backTop">
         <i class="fa fa-arrow-up "></i>
 

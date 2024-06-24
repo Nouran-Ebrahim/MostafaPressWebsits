@@ -18,8 +18,6 @@
                 <th>#</th>
                 <th style="text-align:center;">@lang('trans.title_ar')</th>
                 <th style="text-align:center;">@lang('trans.title_en')</th>
-                <th style="text-align:center;">@lang('trans.desc_ar')</th>
-                <th style="text-align:center;">@lang('trans.desc_en')</th>
                 <th style="text-align:center;">@lang('trans.image')</th>
                 <th>@lang('trans.display')</th>
 
@@ -101,14 +99,7 @@
                         data: 'title_en',
                         name: 'title_en'
                     },
-                    {
-                        data: 'desc_ar',
-                        name: 'desc_ar'
-                    },
-                    {
-                        data: 'desc_en',
-                        name: 'desc_en'
-                    },
+                    
                     {
                         data: 'image',
                         name: 'image'

@@ -16,23 +16,23 @@
     <div class="container my-lg-5 my-3 section-top">
         <div class="row ">
             <div class="col-lg-4 d-flex">
-                <div class="d-flex bg-black py-3 px-4 text-white gap-2  w-100">
+                <div class="d-flex bg-black py-3 px-4 text-white gap-2 justify-content-center  w-100">
                     <span><i class="fa-solid fa-location-dot"></i></span>
-                    <span><a class="text-white"
+                    <span><a class="text-white" target="_blanck"
                             href="https://www.google.com/maps/place/%D8%B4%D8%A7%D8%B1%D8%B9+%D8%A7%D9%84%D9%81%D8%B1%D8%B2%D8%AF%D9%82%D8%8C+%D8%BA%D8%A8%D9%8A%D8%B1%D8%A9%D8%8C+%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6+12664%D8%8C+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9%E2%80%AD/@24.623197,46.7350244,17z/data=!3m1!4b1!4m6!3m5!1s0x3e2f044bb22c04a5:0x9c6229404ccc4bd!8m2!3d24.623197!4d46.7350244!16s%2Fg%2F1vy7f1cr?entry=ttu">{{setting('address')}}</a></span>
 
                 </div>
 
             </div>
-            <div class="col-lg-4 d-flex">
-                <div class="d-flex bg-black p-4 text-white gap-2  w-100">
+            <div class="col-lg-4 d-flex ">
+                <div class="d-flex bg-black p-4 text-white gap-2 justify-content-center  w-100">
                     <span><i class="fa-solid fa-envelope"></i></span>
                     <span><a class="text-white" href="mailto:{{ setting('email') }}">{{ setting('email') }}</a></span>
 
                 </div>
             </div>
             <div class="col-lg-4 d-flex">
-                <div class="d-flex bg-black p-4 text-white gap-2  w-100">
+                <div class="d-flex bg-black p-4 text-white gap-2 justify-content-center w-100">
                     <span><i class="fa-solid fa-phone"></i></span>
                     <span><a class="text-white" href="tel:{{ setting('phone') }}">{{ setting('phone') }}</a></span>
 

@@ -61,8 +61,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::any('/orders/last_order_id', [OrderController::class, 'last_order_id'])->name('orders.last_order_id');
         Route::any('/order_status', [OrderController::class, 'changeStatus'])->name('orders.status');
         Route::GET('/orders/{method?}', [OrderController::class, 'index'])->name('orders');
-        Route::post('deleteGalleryPhoto', [AdvertisingController::class, 'deleteGalleryPhoto'])->name('deleteGalleryPhoto');
+        Route::post('deleteGalleryPhotoAdds', [AdvertisingController::class, 'deleteGalleryPhotoAdds'])->name('deleteGalleryPhotoAdds');
         Route::post('deleteGalleryPhoto', [BannerController::class, 'deleteGalleryPhoto'])->name('deleteGalleryPhoto');
+        Route::post('deleteServicePhoto', [ServicesController::class, 'deleteServicePhoto'])->name('deleteServicePhoto');
+        Route::post('deleteSliderAdds', [AdvertisingController::class, 'deleteSliderAdds'])->name('deleteSliderAdds');
+
 
         Route::resources([
             'admins' => AdminsController::class,

@@ -29,11 +29,35 @@
                 <option {{ $Image->status ==  '1' ? 'selected' : '' }} value="1">@lang('trans.visible')</option>
             </select>
         </div>
-        
+        <div class="form-group my-1 col-md-6 col-sm-12">
+            <label class="my-1">@lang('trans.sliders')</label>
+            <label class="file-input btn btn-block btn-secondary btn-file w-100">
+                <input accept="image/*,video/*"  type="file" name="files[]" multiple>
+                @lang("trans.Browse")
+            </label>
+        </div>
+        <div class="row d-flex justify-content-center my-2">
+            @foreach ($Image->slider as $slider)
+                @if ($slider->file)
+                    <div class="position-relative" style="width: fit-content;">
+                        <input type="hidden" name="old_gallery[]" value="{{ $slider->file }}">
+                        @if ($slider->type=="image")
+                        <img class="preview_image" style="max-width: 100px;" src="{{ $slider->file }}" />
+
+                        @else
+                            <video autoplay muted class="preview_image" style="max-width: 100px;" src="{{ $slider->file }}" ></video>
+                        @endif
+                        <i data-path="{{ $slider->file }}" data-product_id="{{$slider->advertising_id }}"
+                            class="position-absolute cursor-pointer fa-regular fa-circle-xmark xmark2 text-danger"
+                            style="right:0px"></i>
+                    </div>
+                @endif
+            @endforeach
+        </div>
         <div class="form-group my-1 col-md-6 col-sm-12">
             <label class="my-1">@lang('trans.images')</label>
             <label class="file-input btn btn-block btn-secondary btn-file w-100">
-                <input accept="image/*" type="file" type="file" name="images[]" multiple>
+                <input accept="image/*"  type="file" name="images[]" multiple>
                 @lang("trans.Browse")
             </label>
         </div>
@@ -97,7 +121,30 @@
             // alert(path);
             item.parent().remove();
             $.ajax({
-                url: "{{ route('admin.deleteGalleryPhoto') }}",
+                url: "{{ route('admin.deleteGalleryPhotoAdds') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    image: path,
+                    product_id:product_id
+                },
+                success: function(result) {
+                    // alert(result)
+                    //  location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        });
+        $(document).on('click', '.xmark2', function() {
+            item = $(this);
+            var path = $(this).data('path')
+            var product_id = $(this).data('product_id')
+            // alert(path);
+            item.parent().remove();
+            $.ajax({
+                url: "{{ route('admin.deleteSliderAdds') }}",
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",

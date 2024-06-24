@@ -9,6 +9,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\UpdateServicesRequest;
+use App\Models\ServiceImage;
 
 class ServicesController extends Controller
 {
@@ -54,7 +55,16 @@ class ServicesController extends Controller
     {
         return view('Admin.services.create');
     }
+    public function deleteServicePhoto(Request $request)
+    {
+        // dd( $request->all());
+        Upload::deleteImage($request->image);
+        $data = ServiceImage::where('service_id', $request->product_id)->where('image', $request->image)->first();
+        $status = $data->delete();
+        // dd($data);
 
+
+    }
     public function store(StoreServicesRequest $request)
     {
         $Statistics = Service::create([
@@ -62,7 +72,7 @@ class ServicesController extends Controller
             'title_en' => $request->title_en,
             'desc_ar' => $request->desc_ar,
             'desc_en' => $request->desc_en,
-            'arrangment' => $request->arrangment,
+            
             'desc_home_ar' => $request->desc_home_ar,
             'desc_home_en' => $request->desc_home_en,
             'status' => $request->status ? 1 : 0,
@@ -77,6 +87,14 @@ class ServicesController extends Controller
         if ($request->home_image) {
             $Statistics->home_image = Upload::UploadFile($request->home_image, 'services');
             $Statistics->save();
+        }
+        if ($request->images) {
+            foreach ($request->images as $key => $img) {
+                ServiceImage::create([
+                    'image' => Upload::UploadFile($img, 'services'),
+                    'service_id' => $Statistics->id,
+                ]);
+            }
         }
         alert()->success(__('trans.addedSuccessfully'));
 
@@ -106,7 +124,7 @@ class ServicesController extends Controller
             'title_en' => $request->title_en,
             'desc_ar' => $request->desc_ar,
             'desc_en' => $request->desc_en,
-            'arrangment' => $request->arrangment,
+
             'desc_home_ar' => $request->desc_home_ar,
             'desc_home_en' => $request->desc_home_en,
             'status' => $request->status ? 1 : 0,
@@ -120,6 +138,14 @@ class ServicesController extends Controller
             Upload::deleteImage($Image->home_image);
             $Image->home_image = Upload::UploadFile($request->home_image, 'services');
             $Image->save();
+        }
+        if ($request->hasFile('images')) {
+            foreach ($request->images as $key => $img) {
+                ServiceImage::create([
+                    'image' => Upload::UploadFile($img, 'services'),
+                    'service_id' => $Image->id,
+                ]);
+            }
         }
         alert()->success(__('trans.updatedSuccessfully'));
 

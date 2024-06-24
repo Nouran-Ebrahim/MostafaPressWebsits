@@ -35,11 +35,11 @@
                 <textarea name="desc_home_en" placeholder="@lang('trans.desc_home_en')" class="mceNoEditor form-control"
                     value="{{ $Image->desc_home_en }}">{{ $Image->desc_home_en }}</textarea>
             </div>
-            <div class="form-group my-1 col-md-6 col-sm-12">
-                <label class="my-1">@lang('trans.arrangment')</label>
-                <input required type="text" name="arrangment" value="{{ $Image->arrangment }}"
-                    placeholder="@lang('trans.arrangment')" class="form-control">
-            </div>
+            <!--<div class="form-group my-1 col-md-6 col-sm-12">-->
+            <!--    <label class="my-1">@lang('trans.arrangment')</label>-->
+            <!--    <input required type="text" name="arrangment" value="{{ $Image->arrangment }}"-->
+            <!--        placeholder="@lang('trans.arrangment')" class="form-control">-->
+            <!--</div>-->
             <div class="form-group my-1 col-md-6 col-sm-12">
                 <label class="my-1">@lang('trans.visibility')</label>
                 <select class="form-control " required name="status">
@@ -62,7 +62,26 @@
                     <input accept="image/*" type="file" type="file" name="home_image">
                 </label>
             </div>
-
+            <div class="form-group my-1 col-md-6 col-sm-12">
+                <label class="my-1">@lang('trans.gallery')</label>
+                <label class="file-input btn btn-block btn-secondary btn-file w-100">
+                    @lang("trans.Browse")
+                    <input accept="image/*" type="file" type="file" name="images[]" multiple>
+                </label>
+            </div>
+                    <div class="row d-flex justify-content-center my-2">
+            @foreach ($Image->images as $item)
+                @if ($item->image)
+                    <div class="position-relative" style="width: fit-content;">
+                        <input type="hidden" name="old_gallery[]" value="{{ $item->image }}">
+                        <img class="preview_image" style="max-width: 100px;" src="{{ $item->image }}" />
+                        <i data-path="{{ $item->image }}" data-product_id="{{$item->service_id  }}"
+                            class="position-absolute cursor-pointer fa-regular fa-circle-xmark text-danger"
+                            style="right:0px"></i>
+                    </div>
+                @endif
+            @endforeach
+        </div>
             <div class="clearfix"></div>
             <div class="col-12 my-4">
                 <div class="button-group">
@@ -74,3 +93,57 @@
         </div>
     </form>
 @endsection
+@push('js')
+    <script>
+        $(document).on('change', 'input[type="file"]', function() {
+            var Preview = $('#prev');
+            Preview.empty();
+            files = this.files;
+            if (files && files.length > 0) {
+                for (var i = 0; i < files.length; i++) {
+                    file = files[i];
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        const fileType = file.type;
+                        if (fileType.startsWith('image/')) {
+                            var image = $("<img>").attr("src", e.target.result);
+                            image.addClass("preview_image");
+                            Preview.append(image);
+                        } else if (fileType.startsWith('video/')) {
+                            var video = $("<video>").attr("src", e.target.result);
+                            video.addClass("preview_image");
+                            Preview.append(video);
+                        } else {
+                            console.log('Unknown file type.');
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        $(document).on('click', '.fa-circle-xmark', function() {
+            item = $(this);
+            var path = $(this).data('path')
+            var product_id = $(this).data('product_id')
+            // alert(path);
+            item.parent().remove();
+            $.ajax({
+                url: "{{ route('admin.deleteServicePhoto') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    image: path,
+                    product_id:product_id
+                },
+                success: function(result) {
+                    // alert(result)
+                    //  location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        });
+    </script>
+@endpush

@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\StoreSettingRequest;
 use App\Models\Country;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class SettingController extends Controller
 {
@@ -21,7 +22,7 @@ class SettingController extends Controller
         $countries = Country::get();
         $Settings = Setting::when($type, function ($query, $type) {
             return $query->where('type', $type);
-        })->get();
+        })->where('status',1)->get();
 
         return view('Admin.setting.edit', compact('Settings', 'type', 'countries'));
     }
@@ -73,6 +74,9 @@ class SettingController extends Controller
             }
         }
         alert()->success(__('trans.updatedSuccessfully'));
+        $locale=Setting::where('key','DefaultLang')->first();
+        session()->put('locale', $locale->value);
+        App::setLocale($locale->value);
         session()->forget('Settings');
 
         return redirect()->back();

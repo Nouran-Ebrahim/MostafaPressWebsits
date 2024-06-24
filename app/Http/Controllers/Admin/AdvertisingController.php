@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Functions\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateImageRequest;
+use App\Models\AdvertisingSlider;
 use App\Models\Slider;
 use App\Models\Advertising;
 use App\Models\AdvertisingImage;
@@ -94,11 +95,21 @@ class AdvertisingController extends Controller
 
         return view('Admin.advertising.edit', compact('Image'));
     }
-    public function deleteGalleryPhoto(Request $request)
+    public function deleteGalleryPhotoAdds(Request $request)
     {
         // dd( $request->all());
         Upload::deleteImage($request->image);
         $data = AdvertisingImage::where('advertising_id', $request->product_id)->where('image', $request->image)->first();
+        $status = $data->delete();
+        // dd($data);
+
+
+    }
+    public function deleteSliderAdds(Request $request)
+    {
+        // dd( $request->all());
+        Upload::deleteImage($request->image);
+        $data = AdvertisingSlider::where('advertising_id', $request->product_id)->where('file', $request->image)->first();
         $status = $data->delete();
         // dd($data);
 
@@ -119,6 +130,24 @@ class AdvertisingController extends Controller
                 AdvertisingImage::create([
                     'image' => Upload::UploadFile($img, 'Advertising'),
                     'advertising_id' => $Image->id,
+                ]);
+            }
+        }
+        if ($request->hasFile('files')) {
+            
+            $files = $request->file('files');
+           
+            
+            foreach ($files as  $file) {
+                if(str_contains($file->getClientMimeType(),'image') ){
+                    $type="image";
+                }else{
+                    $type="video";
+                }
+                AdvertisingSlider::create([
+                    'file' => Upload::UploadFile($file, 'Advertising'),
+                    'advertising_id' => $Image->id,
+                    'type'=>$type
                 ]);
             }
         }

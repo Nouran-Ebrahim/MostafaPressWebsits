@@ -14,6 +14,8 @@ Route::group(['as' => 'client.', 'middleware' => [Localization::class, ForceSSL:
 
     Route::get('/', [HomeController::class, 'home'])->name('home');
     Route::get('services', [HomeController::class, 'services'])->name('services');
+    Route::get('serviceGallery/{id}', [HomeController::class, 'serviceGallery'])->name('serviceGallery');
+
     Route::any('shop/{category_id?}', [HomeController::class, 'shop'])->name('shop');
     Route::any('search', [HomeController::class, 'search'])->name('search');
 

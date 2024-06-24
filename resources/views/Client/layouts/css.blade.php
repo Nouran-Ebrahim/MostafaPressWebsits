@@ -77,24 +77,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="max-snippet:-1,max-image-preview:large,max-video-preview:-1">
 <meta name="description"
-    content="mostafa is Lorem Ipsum Dolor Sit Amet Consectetur. Rhoncus Molestie Vitae Ullamcorper Tristique Ipsum Lacus. Lorem Lectus Amet Neque Cursus Sem Varius Enim. Tellus At Massa Nibh Tempor Sit Erat Lacus Eu Purus. Vel Quisque Felis Mi Et Mattis Platea Eget Tincidunt Ut.">
+    content="{{setting('desc_'.lang())}}">
 <meta name="keywords"
-    content="mostafa press, Easy Returns, Wide Selection  ,Free Shipping  , Sneakers, Sports, Formal, Slip-on, Motion Graphics,offers,discounts,chance">
+    content="{{setting('keywords')}}">
 <meta name="author" content="{{setting("author")}}">
-<meta name="image" content="https://emcan-group.com/emcan.jpg">
+<meta name="image" content="{{ asset(setting('logo_dark')) }}">
 <meta property="og:title" content="{{setting('title_'.lang())}}">
 <meta property="og:description"
-    content="mostafa press is Lorem Ipsum Dolor Sit Amet Consectetur. Rhoncus Molestie Vitae Ullamcorper Tristique Ipsum Lacus. Lorem Lectus Amet Neque Cursus Sem Varius Enim. Tellus At Massa Nibh Tempor Sit Erat Lacus Eu Purus. Vel Quisque Felis Mi Et Mattis Platea Eget Tincidunt Ut.">
+    content="{{setting('desc_'.lang())}}">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://emcan-group.com/emcan.webp">
-<meta property="og:url" content="https://emcan-group.com/en">
+<meta property="og:image" content="{{ asset(setting('logo_dark')) }}">
+<meta property="og:url" content="{{ url()->full() }}">
 <meta property="og:site_name" content="{{setting('title_'.lang())}}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="{{setting('title_'.lang())}}">
 <meta name="twitter:title" content="{{setting('title_'.lang())}}">
 <meta name="twitter:description"
-    content="mostafa press is Lorem Ipsum Dolor Sit Amet Consectetur. Rhoncus Molestie Vitae Ullamcorper Tristique Ipsum Lacus. Lorem Lectus Amet Neque Cursus Sem Varius Enim. Tellus At Massa Nibh Tempor Sit Erat Lacus Eu Purus. Vel Quisque Felis Mi Et Mattis Platea Eget Tincidunt Ut.">
-<meta name="twitter:site" content="@mostafa press">
+    content="{{setting('desc_'.lang())}}">
+<meta name="twitter:site" content="{{ setting('title_'.lang()) }}">
 {{-- <meta name="csrf-token" content="UA03C1pxmumaEQe8eqQuogEL9x4lDE8HyhaSlguZ"> --}}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="orJ7ZbMHiPkMYkLCmiZpVFPHiWeJYzxBdmYrqe4q-0E" />

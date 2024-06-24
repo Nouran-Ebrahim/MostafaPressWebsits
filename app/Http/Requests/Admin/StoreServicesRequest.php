@@ -15,10 +15,11 @@ class StoreServicesRequest extends BaseRequest
             'desc_en' => ['required', 'string'],
             'image' => ['required', 'image'],
             'home_image' => ['required', 'image'],
-            'arrangment' => ['required', 'string'],
             "desc_home_ar"=>['required', 'string'],
             "desc_home_en"=>['required', 'string'],
             'status' => ['required', 'boolean'],
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'image'],
         ];
     }
 }

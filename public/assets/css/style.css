@@ -1443,6 +1443,8 @@ table tbody tr:nth-child(even) td {
   top: 75px;
   position: absolute;
 }
+
+
 @keyframes checkmark {
   0% {
     height: 0;
@@ -1464,4 +1466,12 @@ table tbody tr:nth-child(even) td {
     width: 37.5px;
     opacity: 1;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+.content-slider{
+    min-height:835px;
+    display:flex;
+      justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map */

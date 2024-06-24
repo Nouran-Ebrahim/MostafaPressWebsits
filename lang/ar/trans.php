@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "see more"=>"رؤية المزيد",
     'wishlist' => 'قائمة الرغبات',
     'image_sm' => 'الصورة في الشاشة الصغيرة',
     'image_lg' => 'الصورة في شاشة كبيرة',
@@ -12,6 +13,14 @@ return [
     'product_care_image' => 'صورة العناية بالمنتج',
     'ViewChart' => 'رؤية جدول المقاسات',
     'OurStory' => 'قصتنا',
+      'SeeMore' => 'رؤية المزيد',
+    "banner_image"=>"صورة الراية",
+    "quote_image"=>"صورة الاقتباس",
+    "side_image"=>"الصوره الجانبية",
+    "quote_desc_ar"=>"وصف الاقتباس بالعربي",
+    "quote_desc_en"=>"وصف الاقتباس بالانجليزي",
+    "quote2_desc_ar"=>"وصف الاقتباس الثاني بالعربي",
+    "quote2_desc_en"=>"وصف الاقتباس الثاني بالانجليزي",
     "OUR SERVICES"=>"خدماتنا",
     "Progress"=>"تقدم",
     "development"=>"تطوير",
@@ -1770,6 +1779,7 @@ return [
     'whatsapp' => 'واتس اب',
     'workdates' => 'مواعيد العمل',
     'working_periods' => 'فترات العمل',
+    'working_times' => 'فترات العمل',
     'working_time_ar' => 'وقت العمل باللغة العربية',
     'working_time_en' => 'وقت العمل باللغة الإنجليزية',
     'worktime' => 'اوقات العمل',

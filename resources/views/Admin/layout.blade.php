@@ -50,7 +50,7 @@
         <nav class="sidebar-nav">
             <ul>
                 @include('Admin.Sidebars.visit_website')
-                {{-- @include('Admin.Sidebars.dashboard') --}}
+                @include('Admin.Sidebars.dashboard')
                 @include('Admin.Sidebars.partners')
                 @include('Admin.Sidebars.advertising')
                 @include('Admin.Sidebars.statistics')

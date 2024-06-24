@@ -12,4 +12,8 @@ class Advertising extends BaseModel
     {
         return $this->hasMany(AdvertisingImage::class);
     }
+    public function slider()
+    {
+        return $this->hasMany(AdvertisingSlider::class);
+    }
 }

@@ -148,12 +148,13 @@
     <footer>
         <div class="container py-5">
             <div class="row justify-content-between" data-aos="fade-up">
-                <div class="col-md-4 col-12 text-white d-flex flex-md-row flex-column align-items-start gap-3">
-                    <a class="navbar-brand py-2 text-center  m-0" href="index.html">
-                        <img class width="70" src="{{ asset(setting('logo')) }}" loading="lazy" alt="description" width
-                            height />
+                <div class="col-md-4 col-12 text-white d-flex flex-md-row flex-column align-items-start gap-3" style="    display: flex !important;align-items: center !important;">
+                    <a class="navbar-brand py-2 text-center  m-0" href="{{route('client.home')}}">
+                        <img class width="70" src="{{ asset(setting('logo')) }}" loading="lazy" alt="description" width height />
                     </a>
-                    <p>{{setting('desc_'.lang())}}</p>
+                    <p>
+                        {{ __('trans.working_times') }}: 8am - 7pm
+                    </p>
                 </div>
                 <div class="col-md-3 col-12 ">
                     <ul class="p-0 fs-6 list-footer">
@@ -164,7 +165,7 @@
                         </li>
                         <li class="py-1">
                             <a href="{{ route('client.about') }}">
-                                @lang('trans.about')
+                                 @lang('trans.About Us')
                             </a>
                         </li>
                         <li class="py-1">
@@ -195,7 +196,7 @@
                     <ul class="social d-flex px-0">
                         @foreach (SocialMediaIcons() as $data)
                             <li>
-                                <a href="{{ $data->link }}">
+                                <a href="{{ $data->link }}" target="_blanck">
                                     <i class="{{ $data->icon }} icon"></i>
                                 </a>
                             </li>
@@ -217,7 +218,7 @@
                     © {{date('Y')}} <a class href="{{route('client.home')}}"> {{setting('title_'.lang())}}</a>. @lang('trans.copyrights')
                 </div>
                 <div class="col-md-4 col-12 text-center  emcan">
-                    @lang('trans.Powared by')<span class> <a style="color:#489339;opacity: 1;" href="https://emcan-group.com/en">@lang('trans.emcan')</a> </span>
+                    Powered By<span class> <a target="_blanck" style="color:#489339;opacity: 1;" href="https://emcan-group.com/en">Emcan</a> </span>
                 </div>
                 <div class="col-md-4 col-12 text-center  emcan">
                     <ul class="p-0 fs-6 list-footer list-data-footer flex-nowrap">

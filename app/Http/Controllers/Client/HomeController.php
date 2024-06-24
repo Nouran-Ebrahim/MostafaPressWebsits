@@ -26,6 +26,7 @@ use Stevebauman\Location\Facades\Location;
 use App\Models\Advertising;
 use App\Models\Statistics;
 use App\Models\Banner;
+
 class HomeController extends Controller
 {
     public function home(Request $request)
@@ -34,27 +35,35 @@ class HomeController extends Controller
         $Popular = Product::where('popular', 1)->get();
         $MostSelling = Product::where('most_selling', 1)->get();
         $Offers = Product::query()->where('from', '<', now())->where('to', '>', now())->get();
-        $advertising = Advertising::where('status', 1)->whereHas('images')->latest()->first();
+        $advertising = Advertising::where('status', 1)->whereHas('images')->whereHas('slider')->latest()->first();
         $Statistics = Statistics::where('status', 1)->get();
-        $Services = Service::where('status', 1)->get();
+        $Services = Service::where('status', 1)->whereHas('images')->latest()->get()->take(6);
         $partners = Partner::where('status', 1)->get();
         $Banner = Banner::where('status', 1)->whereHas('images')->latest()->first();
-        $steps=StepSuccess::where('status', 1)->get();
-        return view('Client.home', compact('Sliders','Services',"steps",'Banner','partners','advertising','Statistics', 'MostSelling', 'Popular', 'Offers'));
+        $steps = StepSuccess::where('status', 1)->get();
+        return view('Client.home', compact('Sliders', 'Services', "steps", 'Banner', 'partners', 'advertising', 'Statistics', 'MostSelling', 'Popular', 'Offers'));
     }
 
 
     public function services(Request $request)
     {
-        $services=Service::where('status', 1)->get();
+        $services = Service::where('status', 1)->whereHas('images')->get();
 
         return view('Client.services', compact('services'));
+    }
+    public function serviceGallery(Request $request)
+    {
+        // dd( request('id'));
+        $service = Service::where('id', request('id'))->with('images')->first();
+        $galley = $service->images;
+        // dd($galley);
+        return view('Client.serviceGallery', compact('galley','service'));
     }
 
     public function product($id, Request $request)
     {
         $Product = Product::Active()->where('id', $id)->firstorfail();
-        $RelatedProducts = Product::whereNot('id', $Product->id)->orderBy('title_'.lang())->get();
+        $RelatedProducts = Product::whereNot('id', $Product->id)->orderBy('title_' . lang())->get();
 
         return view('Client.product', compact('Product', 'RelatedProducts'));
     }
@@ -63,12 +72,12 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|email|regex:/^([a-z0-9+-]+)(.[a-z0-9+-]+)*@([a-z0-9-]+.)+[a-z]{2,6}$/ix',
             'message' => 'required',
             'subject' => 'required',
-            'phone' => ["numeric","required"],
+            'phone' => ["numeric", "required"],
         ]);
-        
+
         Contact::create($request->all());
         toast(__('trans.We Will Contact You as soon as possible'), 'success');
 
@@ -90,9 +99,9 @@ class HomeController extends Controller
             'Quantity' => $request->quantity,
             'note' => $request->note,
         ])->first();
-        if($Cart){
+        if ($Cart) {
             Cart::where('id', $Cart->id)->increment('quantity', $request->quantity);
-        }else{
+        } else {
             Cart::create([
                 'client_id' => client_id(),
                 'product_id' => $request->product_id,
@@ -112,7 +121,7 @@ class HomeController extends Controller
     {
         $Cart = Cart::where('client_id', client_id())->with('Product', 'Color', 'Size')->get();
         $Location = Location::get(request()->ip());
-        $Addresses = Address::where('client_id',client_id())->get();
+        $Addresses = Address::where('client_id', client_id())->get();
 
         return view('Client.confirm', [
             'Cart' => $Cart,
@@ -125,7 +134,7 @@ class HomeController extends Controller
     public function cart()
     {
         $Cart = Cart::where('client_id', client_id())->with('Product', 'Color', 'Size')->get();
-        
+
         return view('Client.cart', compact('Cart'));
     }
 
@@ -184,7 +193,7 @@ class HomeController extends Controller
         $Client = auth('client')->user();
 
         if ($delivery_id == 1) {
-            $Address = Address::where('id',$request->address_id)->first();
+            $Address = Address::where('id', $request->address_id)->first();
             if (!$Address) {
                 $Address = Address::create([
                     'client_id' => $Client->id,
@@ -261,7 +270,7 @@ class HomeController extends Controller
                 }
                 alert()->success(__('trans.order_added_successfully'));
 
-                return redirect()->route('client.success',$Order->id);
+                return redirect()->route('client.success', $Order->id);
             } else {
                 $TapController = new \App\Http\Controllers\Payment\TapController();
 
@@ -272,44 +281,44 @@ class HomeController extends Controller
         return redirect()->route('client.home');
     }
 
-    
+
     public function success($id, Request $request)
     {
         $Order = Order::findorfail($id);
-        return view('Client.success',compact('Order'));
+        return view('Client.success', compact('Order'));
     }
 
     public function washList(Request $request)
     {
         $Client = auth('client')->user();
         $Products = $Client->WashList()
-        ->paginate(25);
-        return view('Client.washList',compact('Products'));
+            ->paginate(25);
+        return view('Client.washList', compact('Products'));
     }
     public function ToggleFav(Request $request)
     {
         $Client = auth('client')->user();
         if ($Client) {
-            if ($Client->WashList()->where('product_id',$request->id)->count()) {
+            if ($Client->WashList()->where('product_id', $request->id)->count()) {
                 $Client->WashList()->detach($request->product_id);
-            }else{
+            } else {
                 $Client->WashList()->attach($request->product_id);
             }
-        }else{
+        } else {
             $washList = session()->get('washList') ?? [];
-            if($washList){
+            if ($washList) {
                 if (in_array($request->product_id, $washList)) {
-                    unset($washList[array_search($request->product_id,$washList)]);
-                }else{
+                    unset($washList[array_search($request->product_id, $washList)]);
+                } else {
                     $washList[] = $request->product_id;
                 }
-            }else{
+            } else {
                 $washList[] = $request->product_id;
             }
 
-            session()->put('washList',$washList);
+            session()->put('washList', $washList);
         }
-        
+
     }
 
 }

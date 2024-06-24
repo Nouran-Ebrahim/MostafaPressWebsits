@@ -33,10 +33,10 @@
             <label class="my-1">@lang('trans.desc_home_en')</label>
             <textarea name="desc_home_en" placeholder="@lang('trans.desc_home_en')" class="mceNoEditor form-control">{{ old('desc_home_en') }}</textarea>
         </div>
-        <div class="form-group my-1 col-md-6 col-sm-12">
-            <label class="my-1">@lang('trans.arrangment')</label>
-            <input required type="text" name="arrangment" value="{{ old('arrangment') }}" placeholder="@lang('trans.arrangment')" class="form-control">
-        </div>
+        <!--<div class="form-group my-1 col-md-6 col-sm-12">-->
+        <!--    <label class="my-1">@lang('trans.arrangment')</label>-->
+        <!--    <input required type="text" name="arrangment" value="{{ old('arrangment') }}" placeholder="@lang('trans.arrangment')" class="form-control">-->
+        <!--</div>-->
 
         <div class="form-group my-1 col-md-6 col-sm-12">
             <label class="my-1">@lang('trans.visibility')</label>
@@ -60,7 +60,13 @@
                 <input accept="image/*" type="file" type="file" name="home_image">
             </label>
         </div>
-        
+        <div class="form-group my-1 col-md-6 col-sm-12">
+            <label class="my-1">@lang('trans.gallery')</label>
+            <label class="file-input btn btn-block btn-secondary btn-file w-100">
+                @lang("trans.Browse")
+                <input accept="image/*" type="file" type="file" name="images[]" multiple>
+            </label>
+        </div>
         <div class="clearfix"></div>
     
         <div class="clearfix"></div>

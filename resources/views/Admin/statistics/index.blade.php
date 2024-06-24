@@ -1,32 +1,40 @@
 @extends('Admin.layout')
 @section('pagetitle', __('trans.statistics'))
+@push('css')
+    <style>
+        .image-column {
+            background-color: gray;
+        }
+    </style>
+@endpush
 @section('content')
-<div class="row">
+    <div class="row">
 
-    <div class="my-2 col-6 col-md-3 text-center">
-        <a href="{{ route('admin.statistics.create') }}" class="main-btn" disabled>@lang('trans.add_new')</a>
+        <div class="my-2 col-6 col-md-3 text-center">
+            <a href="{{ route('admin.statistics.create') }}" class="main-btn" disabled>@lang('trans.add_new')</a>
+        </div>
+        <div class="my-2 col-6 col-md-3 text-center">
+            <button type="button" id="DeleteSelected" onclick="DeleteSelected('statistics')" class="btn btn-dark"
+                disabled>@lang('trans.Delete_Selected')</button>
+        </div>
     </div>
-    <div class="my-2 col-6 col-md-3 text-center">
-        <button type="button" id="DeleteSelected" onclick="DeleteSelected('advertisings')" class="btn btn-dark" disabled>@lang('trans.Delete_Selected')</button>
-    </div>
-</div>
 
-<table class="table"  id="DataTable">
-    <thead>
-        <tr>
-            <th><input type="checkbox" id="ToggleSelectAll" class="main-btn"></th>
-            <th>#</th>
-            <th style="text-align:center;">@lang('trans.title_ar')</th>
-            <th style="text-align:center;">@lang('trans.title_en')</th>
-            <th style="text-align:center;">@lang('trans.image')</th>
-            <th>@lang('trans.display')</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+    <table class="table" id="DataTable">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="ToggleSelectAll" class="main-btn"></th>
+                <th>#</th>
+                <th style="text-align:center;">@lang('trans.title_ar')</th>
+                <th style="text-align:center;">@lang('trans.title_en')</th>
+                <th style="text-align:center;">@lang('trans.image')</th>
+                <th>@lang('trans.display')</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 @endsection
 
 
@@ -42,10 +50,12 @@
                     sUrl: '{{ DT_Lang() }}'
                 },
                 ajax: "{{ route('admin.statistics.index') }}",
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
-                , dom: 'Blfrtip'
-                , buttons: [
-                    {
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                dom: 'Blfrtip',
+                buttons: [{
                         extend: 'copy',
                         exportOptions: {
                             columns: ':visible'
@@ -72,14 +82,13 @@
                     {
                         extend: 'print',
                         exportOptions: {
-                            stripHtml : false,
+                            stripHtml: false,
                             columns: ':visible'
                         }
                     },
                     'colvis'
-                ]
-                , columns: [
-                    {
+                ],
+                columns: [{
                         data: 'checkbox',
                         orderable: false,
                         searchable: false
@@ -112,9 +121,5 @@
             });
 
         });
-
-
-
-
     </script>
 @endpush

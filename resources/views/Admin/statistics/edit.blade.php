@@ -14,7 +14,10 @@
             <label class="my-1">@lang('trans.title_en')</label>
             <input type="text" name="title_en" value="{{ $Image->title_en }}" required placeholder="@lang('trans.title_en')" class="form-control">
         </div>
-       
+       <div class="form-group my-1 col-md-6 col-sm-12">
+            <label class="my-1">@lang('trans.number')</label>
+            <input required type="text" name="number" value="{{ $Image->number }}"  placeholder="@lang('trans.number')" class="form-control">
+        </div>
         <div class="form-group my-1 col-md-6 col-sm-12">
             <label class="my-1">@lang('trans.visibility')</label>
             <select class="form-control " required name="status">

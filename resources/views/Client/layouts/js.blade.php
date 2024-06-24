@@ -57,17 +57,18 @@
             $("html,body").scrollTop(0);
         })
     });
-    // startPage();
+    startPage();
     CheckLanguage();
     /////// initialize All Items needed for Running Page
-    // function startPage() {
-    //     let lang = "{{lang()}}";
-    //     if (lang == undefined || lang == null || lang == "") {
-    //         localStorage.setItem('Language', "English");
-    //     }
+    function startPage() {
+        let lang = localStorage.getItem('Language');
+        // console.log(lang);
+        if (lang == undefined || lang == null || lang == "") {
+            localStorage.setItem('Language', "English");
+        }
 
 
-    // }
+    }
 
 
     document.addEventListener('DOMContentLoaded', function() {

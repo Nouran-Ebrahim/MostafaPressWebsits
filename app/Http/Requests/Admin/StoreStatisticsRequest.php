@@ -12,7 +12,7 @@ class StoreStatisticsRequest extends BaseRequest
             'title_ar' => ['required', 'string'],
             'title_en' => ['required', 'string'],
 
-            'number' => ['required', 'string'],
+            'number' => ['required', 'numeric'],
 
             'status' => ['required', 'boolean'],
 

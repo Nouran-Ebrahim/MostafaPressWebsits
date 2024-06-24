@@ -31,7 +31,7 @@ class PartnerController extends Controller
                     return $data;
                 })
                 ->addColumn('image', function ($Model) {
-                    return '<a class="image-popup-no-margins" href="' . image_path($Model['image']) . '">
+                    return '<a class="image-popup-no-margins image-column" href="' . image_path($Model['image']) . '">
                         <img src="' . image_path($Model['image']) . '" style="max-height: 150px;max-width: 150px">
                     </a>';
                 })

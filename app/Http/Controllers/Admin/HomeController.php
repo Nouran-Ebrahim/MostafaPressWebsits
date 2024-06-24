@@ -16,26 +16,26 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $chartOrders = DB::table('orders')->whereMonth('created_at', '>=', Carbon::now()->subMonth()->month)->select([DB::raw('DATE(created_at) AS label'), DB::raw('(COUNT(*)) as y')])->groupBy('label')->get()->toarray();
-        $chartChanges = DB::table('orders')->where('status', 1)->select(DB::raw('sum(net_total) as y'), DB::raw("DATE_FORMAT(created_at,'%M %Y') as label"))->groupBy('label')->orderBy('created_at')->get()->toarray();
-        $chartUsers = \App\Models\Client::whereNotNull('created_at')->whereMonth('created_at', '>=', Carbon::now()->subMonth()->month)->select([DB::raw('DATE(created_at) AS label'), DB::raw('(COUNT(*)) as y')])->groupBy('label')->get()->toarray();
+        $parteners = DB::table('partners')->where('status',1)->count();
+        $statistics = DB::table('statistics')->where('status', 1)->count();
+        $step_successes = \App\Models\StepSuccess::where('status', 1)->count();
 
-        $productsCount = \App\Models\Product::count();
-        $clientsCount = \App\Models\Client::count();
+        $Service = \App\Models\Service::where('status', 1)->count();
+        $admins = \App\Models\Admin::where('status', 1)->count();
         $currentOrdersCount = DB::table('orders')->where('status', 1)->whereIn('follow', [0, 1, 2])->count();
         $previousOrdersCount = DB::table('orders')->where('status', 1)->whereIn('follow', [3])->count();
         $sliderCount = \App\Models\Slider::count();
 
         return view('Admin.home', compact(
 
-            'productsCount',
-            'clientsCount',
+            'Service',
+            'admins',
             'currentOrdersCount',
             'previousOrdersCount',
             'sliderCount',
-            'chartOrders',
-            'chartUsers',
-            'chartChanges',
+            'parteners',
+            'step_successes',
+            'statistics',
         ));
 
     }

@@ -86,14 +86,6 @@
   }
 
 
-  .flag,
-  .floatwhatsapp {
-    bottom: 2%;
-  }
-
-  .back-to-top {
-    bottom: 10%;
-  }
 
   .flag-list {
     bottom: 10%;
@@ -289,14 +281,16 @@
   }
 
   h3 {
-    font-size: 16px;
+    font-size: 20px !important;
+    text-align: center;
 
-  }
+}
 
-  h2 {
-    font-size: 28px;
-    line-height: 37px;
-  }
+h2 {
+  font-size: 30px !important;
+  line-height: 37px;
+  text-align: center;
+}
 
   h4 {
     font-size: 25px;
@@ -372,11 +366,50 @@
     width: 100% !important;
   }
 }
-
+@media only screen and (max-width:485px) {
+    #my-video_html5_api{
+    width: 100%;
+    
+        }
+        .video-js{
+            height: 55vh !important;
+        }
+        .video-js video{
+            height: inherit;
+        }
+    }
 @media only screen and (max-width:414px) {
 
   .bg-img {
     height: 250px;
 
   }
+  h3 {
+    font-size: 18px !important;
+
+}
+
+h2 {
+  font-size: 28px !important;
+
+}
+    .navContainer a.bg-red,
+    button.bg-red {
+      font-size: 12px;
+    }
+
+}
+@media only screen and (max-width: 1224px) {
+.connection div, .back-to-top {
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 12px;
+}
+.connection {
+    bottom: 11%;
+}
+.connection .phone {
+    font-size: 15px;
+}
 }

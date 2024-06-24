@@ -16,12 +16,12 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bg-icon bg-icon-info text-center">
-                                                <i class="fa-solid fa-cubes-stacked h1"></i>
+                                                <i class="fa-regular fa-handshake h1"></i>
                                             </div>
                                         </div>
                                         <div class="text-right col-6">
-                                            <h3 class="text-dark"><b class="counter">{{ $productsCount }}</b></h3>
-                                            <p class="text-muted">@lang('trans.products')</p>
+                                            <h3 class="text-dark"><b class="counter">{{ $parteners }}</b></h3>
+                                            <p class="text-muted">@lang('trans.partners')</p>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -30,12 +30,12 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bg-icon bg-icon-info text-center">
-                                                <i class="fa fa-users h1"></i>
+                                                <i class="fa-solid fa-chart-simple h1"></i>
                                             </div>
                                         </div>
                                         <div class="text-right col-6">
-                                            <h3 class="text-dark"><b class="counter">{{ $clientsCount }}</b></h3>
-                                            <p class="text-muted">@lang('trans.clients')</p>
+                                            <h3 class="text-dark"><b class="counter">{{ $statistics }}</b></h3>
+                                            <p class="text-muted">@lang('trans.statistics')</p>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -44,12 +44,12 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bg-icon bg-icon-info text-center">
-                                                <i class="fa-regular fa-images h1"></i>
+                                                <i class="fa-solid fa-stairs h1"></i>
                                             </div>
                                         </div>
                                         <div class="text-right col-6">
-                                            <h3 class="text-dark"><b class="counter">{{ $sliderCount }}</b></h3>
-                                            <p class="text-muted">@lang('trans.sliders')</p>
+                                            <h3 class="text-dark"><b class="counter">{{ $step_successes }}</b></h3>
+                                            <p class="text-muted">@lang('trans.StepSuccess')</p>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -58,12 +58,12 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bg-icon bg-icon-info text-center">
-                                                <i class="fa fa-list h1"></i>
+                                                <i class="fa-solid fa-bell-concierge h1"></i>
                                             </div>
                                         </div>
                                         <div class="text-right col-6">
-                                            <h3 class="text-dark"><b class="counter">{{ $currentOrdersCount }}</b></h3>
-                                            <p class="text-muted">@lang('trans.currentOrders')</p>
+                                            <h3 class="text-dark"><b class="counter">{{ $Service }}</b></h3>
+                                            <p class="text-muted">@lang('trans.services')</p>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -72,12 +72,12 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bg-icon bg-icon-info text-center">
-                                                <i class="fa-solid fa-list-check h1"></i>
+                                                <i class="fa-solid fa-users h1"></i>
                                             </div>
                                         </div>
                                         <div class="text-right col-6">
-                                            <h3 class="text-dark"><b class="counter">{{ $previousOrdersCount }}</b></h3>
-                                            <p class="text-muted">@lang('trans.previousOrders')</p>
+                                            <h3 class="text-dark"><b class="counter">{{ $admins }}</b></h3>
+                                            <p class="text-muted">@lang('trans.admins')</p>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -88,7 +88,7 @@
                 </div>
         
 
-                <div class="content-page">
+                {{-- <div class="content-page">
                     <h3 class="portlet-title text-dark">@lang('trans.UsersByDay')</h3>
                     <div id="UsersByDay" style="height: 370px; width: 100%;"></div>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="content-page">
                     <h3 class="portlet-title text-dark">@lang('trans.ordersByMonth')</h3>
                     <div id="ordersByMonth" style="height: 370px; width: 100%;"></div>
-                </div>
+                </div> --}}
                 
             </div>
         </div>
@@ -108,7 +108,7 @@
 @endsection
 
 
-@push('js')
+{{-- @push('js')
 
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script>
@@ -427,7 +427,7 @@
         }
 
     </style>
-@endpush
+@endpush --}}
 
 
 
